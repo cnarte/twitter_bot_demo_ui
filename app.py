@@ -22,7 +22,7 @@ def send_tweet_to_backend(tweet_text):
 
 def display_response(response):
     if "error" in response:
-        st.error("Enter valid twitter string")
+        st.error(f"Enter valid twitter string \n error: {response}")
         return
 
     score = response['score']
