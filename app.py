@@ -5,7 +5,7 @@ import streamlit as st
 import requests
 
 def send_tweet_to_backend(tweet_text):
-    url = 'https://hook.eu2.make.com/nb4yd9gijgbbq9tscwav2ql5nwdw5cnd'
+    url = 'https://hook.eu2.make.com/gfj73rkktgjv29wxkn32nqfcieuvwkgb'
     payload = {'tweet': tweet_text}
     try:
         response = requests.post(url, json=payload, timeout=10)  # Adjust timeout as needed
