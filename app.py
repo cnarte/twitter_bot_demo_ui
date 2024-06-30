@@ -6,7 +6,7 @@ import requests
 import os
 
 def send_tweet_to_backend(tweet_text):
-    url = os.getenv(MAKE_URL)
+    url = os.getenv("MAKE_URL")
     payload = {'tweet': tweet_text}
     try:
         response = requests.post(url, json=payload, timeout=10)  # Adjust timeout as needed
