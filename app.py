@@ -6,7 +6,7 @@ import requests
 import os
 
 def send_tweet_to_backend(tweet_text):
-    url = os.getenv("MAKE_URL")
+    url = st.secrets["MAKE_URL"]
     payload = {'tweet': tweet_text}
     try:
         response = requests.post(url, json=payload, timeout=10)  # Adjust timeout as needed
@@ -28,26 +28,15 @@ def display_response(response):
 
     score = response['score']
     status = response['status']
-    question_answer = response['Question_Answer']
+    question = response['Question']
 
     st.write(f"Search complete:")
     # st.write(f"Status: {status}")
     # st.write(f"Question: {question_answer}")
     if status == 'found':
-        question, answer = question_answer.split('+ response = ')
-        st.write("Question:", question)
-        answers = answer.strip('[]').split(',')
-        for option in answers:
-            st.button(option.strip()) 
+        st.write("Question posted 👉:", question)
     elif status == 'irrelevent':
-        if score > 0.5:
-            question, answer = question_answer.split('+ response = ')
-            st.write("Question:", question)
-            answers = answer.strip('[]').split(',')
-            for option in answers:
-                st.button(option.strip()) 
-        else:
-            st.write("No relevant question found.")
+        st.write("No relevant question found.")
     else:
         st.write("Invalid status")
 
